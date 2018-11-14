@@ -7,34 +7,29 @@ export default class FilterBar extends Component {
     constructor(props) {
         super(props);
         this.filters = [];
-
     }
 
-    filt(filter, data) {
-        const {update} = this.props;
+    filtrate(filter, data) {
         const sorted = data.filter(filter);
-        update({
+        this.props.update({
             data: sorted
         });
     }
 
     filterBy(filter, name) {
-
         let fl = {name,filter};
 
-        let index = this.filters.findIndex(x => x.name === name);
+        let index = this.filters.findIndex(filter => filter.name === name);
         if (index !== -1) {
             this.filters.splice(index, 1);
             this.reset();
             this.filters.every((item) => {
-                return this.filt(item.filter, this.props.initialData);
+                return this.filtrate(item.filter, this.props.initialData);
             });
-
         } else {
             this.filters[this.filters.length] = fl;
-            this.filt(filter, this.props.data);
+            this.filtrate(filter, this.props.data);
         }
-
     }
 
     reset() {

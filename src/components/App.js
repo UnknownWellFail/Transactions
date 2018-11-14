@@ -13,7 +13,6 @@ class App extends Component {
     }
 
     updateData(config) {
-
         this.setState(config);
     }
 
@@ -44,7 +43,6 @@ class App extends Component {
                     </tbody>
                 </table>
                 <FilterBar initialData={transactions} data={this.state.data} update={this.updateData.bind(this)} />
-
             </div>
         );
     }
