@@ -3,16 +3,17 @@ import FilterButton from "./FilterButton";
 
 export default class FilterBar extends Component {
     filters;
-
+    datas;
     constructor(props) {
         super(props);
         this.filters = [];
+        this.datas = this.props.initialData;
     }
 
-    filtrate(filter, data) {
-        const sorted = data.filter(filter);
+    filtrate(filter) {
+        this.datas = this.datas.filter(filter);
         this.props.update({
-            data: sorted
+            data: this.datas
         });
     }
 
@@ -23,16 +24,17 @@ export default class FilterBar extends Component {
         if (index !== -1) {
             this.filters.splice(index, 1);
             this.reset();
-            this.filters.every((item) => {
-                return this.filtrate(item.filter, this.props.initialData);
+            this.filters.forEach((item) => {
+                return this.filtrate(item.filter);
             });
         } else {
             this.filters[this.filters.length] = fl;
-            this.filtrate(filter, this.props.data);
+            this.filtrate(filter);
         }
     }
 
     reset() {
+        this.datas = this.props.initialData;
         this.props.update({
             data: this.props.initialData
         });
