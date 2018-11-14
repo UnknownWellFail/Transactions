@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
-import './App.css';
-import {transactions} from './Transactions'
+import '../App.css';
+import transactions from '../Transactions'
 import FilterBar from "./FilterBar";
+
 
 class App extends Component {
     constructor(props) {
@@ -10,6 +11,7 @@ class App extends Component {
             data: transactions
         };
     }
+
     updateData(config) {
 
         this.setState(config);
@@ -42,6 +44,7 @@ class App extends Component {
                     </tbody>
                 </table>
                 <FilterBar initialData={transactions} data={this.state.data} update={this.updateData.bind(this)} />
+
             </div>
         );
     }

@@ -1,4 +1,4 @@
-export let transactions = [
+export default [
     {
         id: 1,
         value: 1000,
